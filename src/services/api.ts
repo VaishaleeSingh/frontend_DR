@@ -49,8 +49,11 @@ class ApiService {
           method: error.config?.method
         });
 
-        if (error.response?.status === 401) {
-          // Token expired or invalid
+        // Don't redirect for auth endpoints (login/register) on 401/404
+        const isAuthEndpoint = error.config?.url?.includes('/auth/');
+        
+        if (error.response?.status === 401 && !isAuthEndpoint) {
+          // Token expired or invalid - only redirect if not on auth endpoints
           localStorage.removeItem('token');
           localStorage.removeItem('user');
           window.location.href = '/login';
@@ -61,8 +64,8 @@ class ApiService {
         } else if (error.code === 'ERR_NETWORK') {
           // Network error (CORS, etc.)
           console.error('Network error. Please check your connection and try again.');
-        } else if (error.response?.status === 404) {
-          // Not found - log but don't redirect
+        } else if (error.response?.status === 404 && !isAuthEndpoint) {
+          // Not found - log but don't redirect for auth endpoints
           console.warn('Resource not found:', error.config?.url);
         }
         return Promise.reject(error);

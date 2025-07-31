@@ -72,6 +72,13 @@ const LoginPage: React.FC = () => {
     }
   };
 
+  // Clear error when user starts typing
+  const handleInputChange = () => {
+    if (state.error) {
+      clearError();
+    }
+  };
+
   const handleTogglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -154,6 +161,10 @@ const LoginPage: React.FC = () => {
                           </InputAdornment>
                         ),
                       }}
+                      onChange={(e) => {
+                        field.onChange(e);
+                        handleInputChange();
+                      }}
                     />
                   )}
                 />
@@ -189,6 +200,10 @@ const LoginPage: React.FC = () => {
                             </IconButton>
                           </InputAdornment>
                         ),
+                      }}
+                      onChange={(e) => {
+                        field.onChange(e);
+                        handleInputChange();
                       }}
                     />
                   )}

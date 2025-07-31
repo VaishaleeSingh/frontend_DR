@@ -167,7 +167,20 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         });
       }
     } catch (error: any) {
-      const errorMessage = error.response?.data?.message || 'Login failed';
+      let errorMessage = 'Login failed';
+      
+      if (error.response?.status === 401) {
+        errorMessage = 'Invalid email or password';
+      } else if (error.response?.status === 404) {
+        errorMessage = 'Login service not available. Please try again.';
+      } else if (error.response?.status === 429) {
+        errorMessage = 'Too many login attempts. Please wait a moment before trying again.';
+      } else if (error.code === 'ERR_NETWORK') {
+        errorMessage = 'Network error. Please check your connection and try again.';
+      } else if (error.response?.data?.message) {
+        errorMessage = error.response.data.message;
+      }
+      
       dispatch({
         type: 'AUTH_FAILURE',
         payload: errorMessage,
@@ -200,7 +213,22 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         });
       }
     } catch (error: any) {
-      const errorMessage = error.response?.data?.message || 'Registration failed';
+      let errorMessage = 'Registration failed';
+      
+      if (error.response?.status === 400) {
+        errorMessage = error.response?.data?.message || 'Invalid registration data';
+      } else if (error.response?.status === 409) {
+        errorMessage = 'Email already exists. Please use a different email.';
+      } else if (error.response?.status === 404) {
+        errorMessage = 'Registration service not available. Please try again.';
+      } else if (error.response?.status === 429) {
+        errorMessage = 'Too many registration attempts. Please wait a moment before trying again.';
+      } else if (error.code === 'ERR_NETWORK') {
+        errorMessage = 'Network error. Please check your connection and try again.';
+      } else if (error.response?.data?.message) {
+        errorMessage = error.response.data.message;
+      }
+      
       dispatch({
         type: 'AUTH_FAILURE',
         payload: errorMessage,
