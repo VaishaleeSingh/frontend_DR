@@ -345,7 +345,7 @@ const ApplicationDetailsPage: React.FC = () => {
                            const url = window.URL.createObjectURL(blob);
                            const link = document.createElement('a');
                            link.href = url;
-                           link.download = `resume_${application.applicant.firstName}_${application.applicant.lastName}.${application.resume.originalName.split('.').pop() || 'pdf'}`;
+                           link.download = `resume_${application.applicant.firstName}_${application.applicant.lastName}.${application.resume?.originalName?.split('.').pop() || 'pdf'}`;
                            document.body.appendChild(link);
                            link.click();
                            document.body.removeChild(link);
