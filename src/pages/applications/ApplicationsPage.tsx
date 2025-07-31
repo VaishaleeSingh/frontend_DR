@@ -363,8 +363,25 @@ const ApplicationsPage: React.FC = () => {
           </MenuItem>
 
           {selectedApplication?.resume && (
-            <MenuItem onClick={() => {
+            <MenuItem onClick={async () => {
               // Download resume
+              if (selectedApplication) {
+                try {
+                  const blob = await apiService.downloadResume(selectedApplication._id);
+                  const url = window.URL.createObjectURL(blob);
+                  const link = document.createElement('a');
+                  link.href = url;
+                  link.download = `resume_${selectedApplication.applicant.firstName}_${selectedApplication.applicant.lastName}.${selectedApplication.resume.originalName.split('.').pop() || 'pdf'}`;
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                  window.URL.revokeObjectURL(url);
+                } catch (error: any) {
+                  console.error('Error downloading resume:', error);
+                  // You might want to show a snackbar or alert here
+                  alert(error.message || 'Failed to download resume');
+                }
+              }
               handleMenuClose();
             }}>
               <ListItemIcon>

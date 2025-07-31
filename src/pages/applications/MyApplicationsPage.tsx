@@ -301,14 +301,25 @@ const MyApplicationsPage: React.FC = () => {
                           <Button
                             size="small"
                             variant="outlined"
-                            onClick={() => {
+                            onClick={async () => {
                               // Handle resume download
-                              if (application.resume?.path) {
-                                window.open(application.resume.path, '_blank');
+                              try {
+                                const blob = await apiService.downloadResume(application._id);
+                                const url = window.URL.createObjectURL(blob);
+                                const link = document.createElement('a');
+                                link.href = url;
+                                link.download = `resume_${application.applicant.firstName}_${application.applicant.lastName}.${application.resume.originalName.split('.').pop() || 'pdf'}`;
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                                window.URL.revokeObjectURL(url);
+                              } catch (error) {
+                                console.error('Error downloading resume:', error);
+                                // You might want to show a snackbar or alert here
                               }
                             }}
                           >
-                            View Resume
+                            Download Resume
                           </Button>
                         )}
                       </Box>

@@ -433,6 +433,30 @@ class ApiService {
     const response: AxiosResponse<ApiResponse<T>> = await this.api.delete(url);
     return response.data;
   }
+
+  // Download resume file
+  async downloadResume(applicationId: string): Promise<Blob> {
+    try {
+      const response = await this.api.get(`/applications/${applicationId}/resume`, {
+        responseType: 'blob',
+        headers: {
+          'Accept': 'application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,*/*'
+        }
+      });
+      return response.data;
+    } catch (error: any) {
+      console.error('Download resume error:', error);
+      if (error.response?.status === 404) {
+        throw new Error('Resume file not found');
+      } else if (error.response?.status === 403) {
+        throw new Error('Access denied to resume file');
+      } else if (error.code === 'ERR_NETWORK') {
+        throw new Error('Network error. Please check your connection.');
+      } else {
+        throw new Error('Failed to download resume. Please try again.');
+      }
+    }
+  }
 }
 
 export const apiService = new ApiService();

@@ -334,18 +334,29 @@ const ApplicationDetailsPage: React.FC = () => {
                   </Typography>
                                      <Button
                      variant="contained"
-                     startIcon={<DownloadIcon />}
-                     onClick={() => {
+                     startIcon={loading ? <CircularProgress size={20} /> : <DownloadIcon />}
+                     disabled={loading}
+                     onClick={async () => {
                        // Handle resume download
-                                               if (application.resume) {
-                          const link = document.createElement('a');
-                          const resumeUrl = typeof application.resume === 'string' 
-                            ? application.resume 
-                            : application.resume.path;
-                          link.href = resumeUrl;
-                          link.download = `resume_${application.applicant.firstName}_${application.applicant.lastName}.pdf`;
-                          link.click();
-                        } else {
+                       if (application.resume) {
+                         try {
+                           setLoading(true);
+                           const blob = await apiService.downloadResume(application._id);
+                           const url = window.URL.createObjectURL(blob);
+                           const link = document.createElement('a');
+                           link.href = url;
+                           link.download = `resume_${application.applicant.firstName}_${application.applicant.lastName}.${application.resume.originalName.split('.').pop() || 'pdf'}`;
+                           document.body.appendChild(link);
+                           link.click();
+                           document.body.removeChild(link);
+                           window.URL.revokeObjectURL(url);
+                         } catch (error: any) {
+                           console.error('Error downloading resume:', error);
+                           setError(error.message || 'Failed to download resume. Please try again.');
+                         } finally {
+                           setLoading(false);
+                         }
+                       } else {
                          setError('Resume file not available for download');
                        }
                      }}
