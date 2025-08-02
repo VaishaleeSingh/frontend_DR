@@ -5,9 +5,498 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Improve touch interactions on mobile */
+  -webkit-tap-highlight-color: transparent;
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Responsive typography */
+@media (max-width: 600px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 768px) {
+  button, 
+  [role="button"],
+  .MuiButton-root,
+  .MuiIconButton-root {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve form field touch targets */
+  .MuiTextField-root .MuiInputBase-root {
+    min-height: 48px;
+  }
+  
+  /* Better spacing for mobile cards */
+  .MuiCard-root {
+    margin-bottom: 16px;
+  }
+  
+  /* Improve mobile navigation */
+  .MuiDrawer-paper {
+    width: 280px !important;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .MuiContainer-root {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+/* Large screen optimizations */
+@media (min-width: 1200px) {
+  .MuiContainer-root {
+    max-width: 1400px;
+  }
+}
+
+/* Improve focus states for accessibility */
+*:focus {
+  outline: 2px solid #1976d2;
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better mobile form handling */
+@media (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="tel"],
+  textarea,
+  select {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+  }
+}
+
+/* Improve mobile table responsiveness */
+@media (max-width: 768px) {
+  .MuiTable-root {
+    font-size: 0.875rem;
+  }
+  
+  .MuiTableCell-root {
+    padding: 8px 4px;
+  }
+}
+
+/* Better mobile grid layouts */
+@media (max-width: 600px) {
+  .MuiGrid-root {
+    margin: 0 !important;
+  }
+  
+  .MuiGrid-item {
+    padding: 8px !important;
+  }
+}
+
+/* Improve mobile dialog/modal responsiveness */
+@media (max-width: 768px) {
+  .MuiDialog-paper {
+    margin: 16px;
+    max-width: calc(100vw - 32px) !important;
+    max-height: calc(100vh - 32px) !important;
+  }
+}
+
+/* Better mobile chip spacing */
+@media (max-width: 768px) {
+  .MuiChip-root {
+    margin: 2px;
+  }
+}
+
+/* Improve mobile button groups */
+@media (max-width: 768px) {
+  .MuiButtonGroup-root {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .MuiButtonGroup-root .MuiButton-root {
+    border-radius: 4px !important;
+    margin-bottom: 8px;
+  }
+}
+
+/* Better mobile search bar */
+@media (max-width: 768px) {
+  .MuiInputBase-root {
+    font-size: 16px;
+  }
+}
+
+/* Improve mobile card actions */
+@media (max-width: 768px) {
+  .MuiCardActions-root {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .MuiCardActions-root .MuiButton-root {
+    width: 100%;
+  }
+}
+
+/* Better mobile navigation drawer */
+@media (max-width: 768px) {
+  .MuiDrawer-paper {
+    padding-top: 16px;
+  }
+  
+  .MuiListItem-root {
+    padding: 12px 16px;
+  }
+}
+
+/* Improve mobile typography hierarchy */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  h2 {
+    font-size: 1.5rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  h3 {
+    font-size: 1.25rem !important;
+    line-height: 1.4 !important;
+  }
+  
+  h4 {
+    font-size: 1.125rem !important;
+    line-height: 1.4 !important;
+  }
+  
+  h5 {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  h6 {
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+  }
+}
+
+/* Better mobile spacing */
+@media (max-width: 768px) {
+  .MuiBox-root {
+    padding: 16px !important;
+  }
+  
+  .MuiContainer-root {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+/* Improve mobile image responsiveness */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Better mobile list responsiveness */
+@media (max-width: 768px) {
+  .MuiList-root {
+    padding: 8px 0;
+  }
+  
+  .MuiListItem-root {
+    padding: 12px 16px;
+  }
+}
+
+/* Improve mobile paper components */
+@media (max-width: 768px) {
+  .MuiPaper-root {
+    margin: 8px 0;
+  }
+}
+
+/* Better mobile form layout */
+@media (max-width: 768px) {
+  .MuiFormControl-root {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+}
+
+/* Improve mobile stepper */
+@media (max-width: 768px) {
+  .MuiStepper-root {
+    padding: 16px 8px;
+  }
+  
+  .MuiStepLabel-root {
+    font-size: 0.875rem;
+  }
+}
+
+/* Better mobile tabs */
+@media (max-width: 768px) {
+  .MuiTabs-root {
+    min-height: 48px;
+  }
+  
+  .MuiTab-root {
+    min-height: 48px;
+    font-size: 0.875rem;
+  }
+}
+
+/* Improve mobile menu responsiveness */
+@media (max-width: 768px) {
+  .MuiMenu-paper {
+    max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 32px);
+  }
+}
+
+/* Better mobile tooltip */
+@media (max-width: 768px) {
+  .MuiTooltip-tooltip {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+}
+
+/* Improve mobile snackbar */
+@media (max-width: 768px) {
+  .MuiSnackbar-root {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+  }
+  
+  .MuiSnackbarContent-root {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+/* Better mobile progress indicators */
+@media (max-width: 768px) {
+  .MuiLinearProgress-root {
+    height: 6px;
+  }
+  
+  .MuiCircularProgress-root {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+/* Improve mobile avatar responsiveness */
+@media (max-width: 768px) {
+  .MuiAvatar-root {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  
+  .MuiAvatar-root.MuiAvatar-circular {
+    font-size: 1rem !important;
+  }
+}
+
+/* Better mobile badge positioning */
+@media (max-width: 768px) {
+  .MuiBadge-badge {
+    font-size: 0.75rem;
+    height: 18px;
+    min-width: 18px;
+  }
+}
+
+/* Improve mobile divider spacing */
+@media (max-width: 768px) {
+  .MuiDivider-root {
+    margin: 16px 0;
+  }
+}
+
+/* Better mobile skeleton responsiveness */
+@media (max-width: 768px) {
+  .MuiSkeleton-root {
+    border-radius: 4px;
+  }
+}
+
+/* Improve mobile rating component */
+@media (max-width: 768px) {
+  .MuiRating-root {
+    font-size: 1.25rem;
+  }
+}
+
+/* Better mobile switch component */
+@media (max-width: 768px) {
+  .MuiSwitch-root {
+    padding: 8px;
+  }
+}
+
+/* Improve mobile slider responsiveness */
+@media (max-width: 768px) {
+  .MuiSlider-root {
+    padding: 8px 0;
+  }
+}
+
+/* Better mobile accordion */
+@media (max-width: 768px) {
+  .MuiAccordion-root {
+    margin: 4px 0;
+  }
+  
+  .MuiAccordionSummary-root {
+    min-height: 48px;
+  }
+}
+
+/* Improve mobile breadcrumbs */
+@media (max-width: 768px) {
+  .MuiBreadcrumbs-root {
+    font-size: 0.875rem;
+  }
+  
+  .MuiBreadcrumbs-separator {
+    margin: 0 4px;
+  }
+}
+
+/* Better mobile pagination */
+@media (max-width: 768px) {
+  .MuiPagination-root {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .MuiPaginationItem-root {
+    min-width: 32px;
+    height: 32px;
+    margin: 0 2px;
+  }
+}
+
+/* Improve mobile speed dial */
+@media (max-width: 768px) {
+  .MuiSpeedDial-root {
+    bottom: 16px;
+    right: 16px;
+  }
+  
+  .MuiSpeedDialAction-staticTooltip {
+    font-size: 0.875rem;
+  }
+}
+
+/* Better mobile bottom navigation */
+@media (max-width: 768px) {
+  .MuiBottomNavigation-root {
+    height: 56px;
+  }
+  
+  .MuiBottomNavigationAction-root {
+    min-width: 64px;
+    padding: 6px 8px;
+  }
+}
+
+/* Improve mobile fab positioning */
+@media (max-width: 768px) {
+  .MuiFab-root {
+    bottom: 16px;
+    right: 16px;
+  }
+}
+
+/* Better mobile link touch targets */
+@media (max-width: 768px) {
+  a {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+/* Improve mobile form validation messages */
+@media (max-width: 768px) {
+  .MuiFormHelperText-root {
+    font-size: 0.75rem;
+    margin-top: 4px;
+  }
+}
+
+/* Better mobile loading states */
+@media (max-width: 768px) {
+  .MuiBackdrop-root {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Improve mobile error boundaries */
+@media (max-width: 768px) {
+  .MuiAlert-root {
+    margin: 8px 0;
+    padding: 12px 16px;
+  }
+}
+
+/* Better mobile success messages */
+@media (max-width: 768px) {
+  .MuiAlert-standardSuccess {
+    background-color: #e8f5e8;
+  }
+}
+
+/* Improve mobile warning messages */
+@media (max-width: 768px) {
+  .MuiAlert-standardWarning {
+    background-color: #fff8e1;
+  }
+}
+
+/* Better mobile info messages */
+@media (max-width: 768px) {
+  .MuiAlert-standardInfo {
+    background-color: #e3f2fd;
+  }
+}
+
+/* Improve mobile error messages */
+@media (max-width: 768px) {
+  .MuiAlert-standardError {
+    background-color: #ffebee;
+  }
 }

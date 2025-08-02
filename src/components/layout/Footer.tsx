@@ -31,13 +31,26 @@ const Footer: React.FC = () => {
       }}
     >
       <Container maxWidth="lg">
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: { xs: 3, sm: 4 } }}>
           {/* Company Info */}
           <Box sx={{ flex: { xs: '1 1 100%', sm: '1 1 45%', md: '1 1 22%' } }}>
-            <Typography variant="h6" gutterBottom>
+            <Typography 
+              variant="h6" 
+              gutterBottom
+              sx={{
+                fontSize: { xs: '1.125rem', sm: '1.25rem' }
+              }}
+            >
               Recruitment MS
             </Typography>
-            <Typography variant="body2" sx={{ mb: 2 }}>
+            <Typography 
+              variant="body2" 
+              sx={{ 
+                mb: 2,
+                fontSize: { xs: '0.875rem', sm: '1rem' },
+                lineHeight: 1.5
+              }}
+            >
               A comprehensive recruitment management system designed to streamline 
               the hiring process for both recruiters and job seekers.
             </Typography>
@@ -83,7 +96,13 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <Box sx={{ flex: { xs: '1 1 100%', sm: '1 1 45%', md: '1 1 22%' } }}>
-            <Typography variant="h6" gutterBottom>
+            <Typography 
+              variant="h6" 
+              gutterBottom
+              sx={{
+                fontSize: { xs: '1.125rem', sm: '1.25rem' }
+              }}
+            >
               Quick Links
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
@@ -104,7 +123,13 @@ const Footer: React.FC = () => {
 
           {/* For Recruiters */}
           <Box sx={{ flex: { xs: '1 1 100%', sm: '1 1 45%', md: '1 1 22%' } }}>
-            <Typography variant="h6" gutterBottom>
+            <Typography 
+              variant="h6" 
+              gutterBottom
+              sx={{
+                fontSize: { xs: '1.125rem', sm: '1.25rem' }
+              }}
+            >
               For Recruiters
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
@@ -125,7 +150,13 @@ const Footer: React.FC = () => {
 
           {/* Contact Info */}
           <Box sx={{ flex: { xs: '1 1 100%', sm: '1 1 45%', md: '1 1 22%' } }}>
-            <Typography variant="h6" gutterBottom>
+            <Typography 
+              variant="h6" 
+              gutterBottom
+              sx={{
+                fontSize: { xs: '1.125rem', sm: '1.25rem' }
+              }}
+            >
               Contact Us
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>

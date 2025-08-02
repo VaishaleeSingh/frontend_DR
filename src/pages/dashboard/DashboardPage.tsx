@@ -79,7 +79,7 @@ type DashboardStatsData = ApplicantStats | RecruiterStats | AdminStats;
 // Reusable clickable card style
 const clickableCardStyle = {
   flex: '1 1 200px',
-  minWidth: 200,
+  minWidth: { xs: 150, sm: 200 },
   cursor: 'pointer',
   transition: 'all 0.3s ease',
   '&:hover': {
@@ -185,7 +185,7 @@ const DashboardPage: React.FC = () => {
   const renderApplicantDashboard = () => (
     <>
       {/* Stats Cards */}
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, mb: 4 }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: { xs: 2, sm: 3 }, mb: 4 }}>
         <Card sx={clickableCardStyle} onClick={() => navigate('/jobs')}>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -282,11 +282,19 @@ const DashboardPage: React.FC = () => {
       )}
 
       {/* Feature Cards */}
-      <Typography variant="h5" gutterBottom sx={{ mt: 4, mb: 3 }}>
+      <Typography 
+        variant="h5" 
+        gutterBottom 
+        sx={{ 
+          mt: 4, 
+          mb: 3,
+          fontSize: { xs: '1.25rem', sm: '1.5rem' }
+        }}
+      >
         Quick Actions & Features
       </Typography>
       
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, mb: 4 }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: { xs: 2, sm: 3 }, mb: 4 }}>
         {/* Job Search */}
         <Card sx={clickableCardStyle} onClick={() => navigate('/jobs')}>
           <CardContent>
@@ -450,7 +458,7 @@ const DashboardPage: React.FC = () => {
   const renderRecruiterDashboard = () => (
     <>
       {/* Stats Cards */}
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, mb: 4 }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: { xs: 2, sm: 3 }, mb: 4 }}>
         <Card sx={clickableCardStyle} onClick={() => navigate('/jobs/create')}>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -521,11 +529,19 @@ const DashboardPage: React.FC = () => {
       </Box>
 
       {/* Feature Cards */}
-      <Typography variant="h5" gutterBottom sx={{ mt: 4, mb: 3 }}>
+      <Typography 
+        variant="h5" 
+        gutterBottom 
+        sx={{ 
+          mt: 4, 
+          mb: 3,
+          fontSize: { xs: '1.25rem', sm: '1.5rem' }
+        }}
+      >
         Recruitment Management Features
       </Typography>
       
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, mb: 4 }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: { xs: 2, sm: 3 }, mb: 4 }}>
         {/* Job Management */}
         <Card sx={clickableCardStyle} onClick={() => navigate('/jobs/create')}>
           <CardContent>
@@ -640,7 +656,7 @@ const DashboardPage: React.FC = () => {
   const renderAdminDashboard = () => (
     <>
       {/* Stats Cards */}
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, mb: 4 }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: { xs: 2, sm: 3 }, mb: 4 }}>
         <Card sx={clickableCardStyle} onClick={() => navigate('/profile')}>
           <CardContent>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -786,11 +802,19 @@ const DashboardPage: React.FC = () => {
       </Card>
 
       {/* Feature Cards */}
-      <Typography variant="h5" gutterBottom sx={{ mt: 4, mb: 3 }}>
+      <Typography 
+        variant="h5" 
+        gutterBottom 
+        sx={{ 
+          mt: 4, 
+          mb: 3,
+          fontSize: { xs: '1.25rem', sm: '1.5rem' }
+        }}
+      >
         System Management Features
       </Typography>
       
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, mb: 4 }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: { xs: 2, sm: 3 }, mb: 4 }}>
         {/* User Management */}
         <Card sx={clickableCardStyle} onClick={() => navigate('/users')}>
           <CardContent>
@@ -906,23 +930,50 @@ const DashboardPage: React.FC = () => {
     <Container maxWidth="lg">
       <Box sx={{ py: 4 }}>
         {/* Header */}
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 4 }}>
+        <Box sx={{ 
+          display: 'flex', 
+          flexDirection: { xs: 'column', sm: 'row' },
+          alignItems: { xs: 'flex-start', sm: 'center' }, 
+          justifyContent: 'space-between', 
+          mb: 4,
+          gap: { xs: 2, sm: 0 }
+        }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <DashboardIcon sx={{ fontSize: 32, color: 'primary.main' }} />
-          <Box>
-            <Typography variant="h3" component="h1">
-              Welcome back, {user?.firstName}!
-            </Typography>
-            <Typography variant="h6" color="text.secondary">
-              Here's what's happening with your {user?.role === 'applicant' ? 'job search' : 'recruitment activities'}
-            </Typography>
-          </Box>
+            <DashboardIcon sx={{ 
+              fontSize: { xs: 28, sm: 32 }, 
+              color: 'primary.main' 
+            }} />
+            <Box>
+              <Typography 
+                variant="h3" 
+                component="h1"
+                sx={{
+                  fontSize: { xs: '1.75rem', sm: '2.125rem', md: '3rem' },
+                  lineHeight: { xs: 1.2, sm: 1.3, md: 1.4 }
+                }}
+              >
+                Welcome back, {user?.firstName}!
+              </Typography>
+              <Typography 
+                variant="h6" 
+                color="text.secondary"
+                sx={{
+                  fontSize: { xs: '1rem', sm: '1.125rem', md: '1.25rem' }
+                }}
+              >
+                Here's what's happening with your {user?.role === 'applicant' ? 'job search' : 'recruitment activities'}
+              </Typography>
+            </Box>
           </Box>
           <Button
             variant="outlined"
             startIcon={<Refresh />}
             onClick={handleRefresh}
             disabled={refreshing}
+            sx={{
+              width: { xs: '100%', sm: 'auto' },
+              minHeight: { xs: '44px', sm: '48px' }
+            }}
           >
             {refreshing ? 'Refreshing...' : 'Refresh'}
           </Button>

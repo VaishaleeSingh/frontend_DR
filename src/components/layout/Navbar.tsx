@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
   
   const { state, logout } = useAuth();
   const { isAuthenticated, user } = state;
@@ -87,15 +87,27 @@ const Navbar: React.FC = () => {
   ];
 
   const renderDesktopMenu = () => (
-    <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 2 }}>
+    <Box sx={{ 
+      display: { xs: 'none', lg: 'flex' }, 
+      alignItems: 'center', 
+      gap: { lg: 1, xl: 2 },
+      flexWrap: 'wrap'
+    }}>
       {navigationItems.map((item) => (
         <Button
           key={item.path}
           component={RouterLink}
           to={item.path}
           color="inherit"
+          size="medium"
           sx={{
             backgroundColor: location.pathname === item.path ? 'rgba(255,255,255,0.1)' : 'transparent',
+            minHeight: { lg: '40px', xl: '48px' },
+            px: { lg: 1.5, xl: 2 },
+            fontSize: { lg: '0.875rem', xl: '1rem' },
+            '&:hover': {
+              backgroundColor: 'rgba(255,255,255,0.15)',
+            }
           }}
         >
           {item.label}
@@ -110,8 +122,15 @@ const Navbar: React.FC = () => {
               component={RouterLink}
               to={item.path}
               color="inherit"
+              size="medium"
               sx={{
                 backgroundColor: location.pathname === item.path ? 'rgba(255,255,255,0.1)' : 'transparent',
+                minHeight: { lg: '40px', xl: '48px' },
+                px: { lg: 1.5, xl: 2 },
+                fontSize: { lg: '0.875rem', xl: '1rem' },
+                '&:hover': {
+                  backgroundColor: 'rgba(255,255,255,0.15)',
+                }
               }}
             >
               {item.label}
@@ -125,8 +144,15 @@ const Navbar: React.FC = () => {
                 component={RouterLink}
                 to={item.path}
                 color="inherit"
+                size="medium"
                 sx={{
                   backgroundColor: location.pathname === item.path ? 'rgba(255,255,255,0.1)' : 'transparent',
+                  minHeight: { lg: '40px', xl: '48px' },
+                  px: { lg: 1.5, xl: 2 },
+                  fontSize: { lg: '0.875rem', xl: '1rem' },
+                  '&:hover': {
+                    backgroundColor: 'rgba(255,255,255,0.15)',
+                  }
                 }}
               >
                 {item.label}
@@ -140,8 +166,15 @@ const Navbar: React.FC = () => {
                 component={RouterLink}
                 to={item.path}
                 color="inherit"
+                size="medium"
                 sx={{
                   backgroundColor: location.pathname === item.path ? 'rgba(255,255,255,0.1)' : 'transparent',
+                  minHeight: { lg: '40px', xl: '48px' },
+                  px: { lg: 1.5, xl: 2 },
+                  fontSize: { lg: '0.875rem', xl: '1rem' },
+                  '&:hover': {
+                    backgroundColor: 'rgba(255,255,255,0.15)',
+                  }
                 }}
               >
                 {item.label}
@@ -159,18 +192,40 @@ const Navbar: React.FC = () => {
           aria-haspopup="true"
           onClick={handleProfileMenuOpen}
           color="inherit"
+          sx={{
+            ml: { lg: 1, xl: 2 },
+            minWidth: { lg: '40px', xl: '48px' },
+            minHeight: { lg: '40px', xl: '48px' },
+          }}
         >
-          <Avatar sx={{ width: 32, height: 32 }}>
+          <Avatar sx={{ 
+            width: { lg: 32, xl: 36 }, 
+            height: { lg: 32, xl: 36 },
+            fontSize: { lg: '0.875rem', xl: '1rem' }
+          }}>
             {user?.firstName?.charAt(0) || 'U'}
           </Avatar>
         </IconButton>
       ) : (
-        <Box sx={{ display: 'flex', gap: 1 }}>
+        <Box sx={{ 
+          display: 'flex', 
+          gap: { lg: 1, xl: 1.5 },
+          flexWrap: 'wrap',
+          alignItems: 'center'
+        }}>
           <Button
             component={RouterLink}
             to="/login"
             color="inherit"
             startIcon={<Login />}
+            size="medium"
+            sx={{
+              minHeight: { lg: '40px', xl: '48px' },
+              fontSize: { lg: '0.875rem', xl: '1rem' },
+              '&:hover': {
+                backgroundColor: 'rgba(255,255,255,0.1)',
+              }
+            }}
           >
             Login
           </Button>
@@ -180,7 +235,16 @@ const Navbar: React.FC = () => {
             color="inherit"
             variant="outlined"
             startIcon={<PersonAdd />}
-            sx={{ borderColor: 'white', '&:hover': { borderColor: 'white' } }}
+            size="medium"
+            sx={{ 
+              borderColor: 'white', 
+              minHeight: { lg: '40px', xl: '48px' },
+              fontSize: { lg: '0.875rem', xl: '1rem' },
+              '&:hover': { 
+                borderColor: 'white',
+                backgroundColor: 'rgba(255,255,255,0.1)',
+              } 
+            }}
           >
             Register
           </Button>
@@ -196,18 +260,28 @@ const Navbar: React.FC = () => {
       onClose={handleMobileMenuToggle}
       sx={{
         '& .MuiDrawer-paper': {
-          width: 250,
+          width: { xs: '280px', sm: '320px' },
+          maxWidth: '85vw',
         },
       }}
     >
-      <Box sx={{ p: 2 }}>
-        <Typography variant="h6" component="div">
-          RMS
+      <Box sx={{ 
+        p: { xs: 2, sm: 3 },
+        backgroundColor: 'primary.main',
+        color: 'white'
+      }}>
+        <Typography variant="h5" component="div" sx={{ fontWeight: 600 }}>
+          Recruitment MS
         </Typography>
+        {isAuthenticated && user && (
+          <Typography variant="body2" sx={{ mt: 1, opacity: 0.9 }}>
+            Welcome, {user.firstName} {user.lastName}
+          </Typography>
+        )}
       </Box>
       <Divider />
       
-      <List>
+      <List sx={{ py: 1 }}>
         {navigationItems.map((item) => (
           <ListItem
             key={item.path}
@@ -216,16 +290,31 @@ const Navbar: React.FC = () => {
             onClick={handleMobileMenuToggle}
             sx={{
               backgroundColor: location.pathname === item.path ? 'rgba(0,0,0,0.04)' : 'transparent',
+              minHeight: '56px',
+              '&:hover': {
+                backgroundColor: 'rgba(0,0,0,0.08)',
+              }
             }}
           >
-            <ListItemIcon>{item.icon}</ListItemIcon>
-            <ListItemText primary={item.label} />
+            <ListItemIcon sx={{ color: 'primary.main' }}>{item.icon}</ListItemIcon>
+            <ListItemText 
+              primary={item.label} 
+              primaryTypographyProps={{ 
+                fontSize: { xs: '0.9rem', sm: '1rem' },
+                fontWeight: location.pathname === item.path ? 600 : 400
+              }}
+            />
           </ListItem>
         ))}
 
         {isAuthenticated && (
           <>
-            <Divider />
+            <Divider sx={{ my: 1 }} />
+            <Box sx={{ px: 2, py: 1 }}>
+              <Typography variant="overline" color="text.secondary" sx={{ fontSize: '0.75rem' }}>
+                Dashboard
+              </Typography>
+            </Box>
             {authenticatedItems.map((item) => (
               <ListItem
                 key={item.path}
@@ -234,16 +323,31 @@ const Navbar: React.FC = () => {
                 onClick={handleMobileMenuToggle}
                 sx={{
                   backgroundColor: location.pathname === item.path ? 'rgba(0,0,0,0.04)' : 'transparent',
+                  minHeight: '56px',
+                  '&:hover': {
+                    backgroundColor: 'rgba(0,0,0,0.08)',
+                  }
                 }}
               >
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.label} />
+                <ListItemIcon sx={{ color: 'primary.main' }}>{item.icon}</ListItemIcon>
+                <ListItemText 
+                  primary={item.label} 
+                  primaryTypographyProps={{ 
+                    fontSize: { xs: '0.9rem', sm: '1rem' },
+                    fontWeight: location.pathname === item.path ? 600 : 400
+                  }}
+                />
               </ListItem>
             ))}
 
             {(user?.role === 'recruiter' || user?.role === 'admin') && (
               <>
-                <Divider />
+                <Divider sx={{ my: 1 }} />
+                <Box sx={{ px: 2, py: 1 }}>
+                  <Typography variant="overline" color="text.secondary" sx={{ fontSize: '0.75rem' }}>
+                    Recruiter Tools
+                  </Typography>
+                </Box>
                 {recruiterItems.map((item) => (
                   <ListItem
                     key={item.path}
@@ -252,10 +356,20 @@ const Navbar: React.FC = () => {
                     onClick={handleMobileMenuToggle}
                     sx={{
                       backgroundColor: location.pathname === item.path ? 'rgba(0,0,0,0.04)' : 'transparent',
+                      minHeight: '56px',
+                      '&:hover': {
+                        backgroundColor: 'rgba(0,0,0,0.08)',
+                      }
                     }}
                   >
-                    <ListItemIcon>{item.icon}</ListItemIcon>
-                    <ListItemText primary={item.label} />
+                    <ListItemIcon sx={{ color: 'primary.main' }}>{item.icon}</ListItemIcon>
+                    <ListItemText 
+                      primary={item.label} 
+                      primaryTypographyProps={{ 
+                        fontSize: { xs: '0.9rem', sm: '1rem' },
+                        fontWeight: location.pathname === item.path ? 600 : 400
+                      }}
+                    />
                   </ListItem>
                 ))}
               </>
@@ -263,7 +377,12 @@ const Navbar: React.FC = () => {
 
             {user?.role === 'applicant' && (
               <>
-                <Divider />
+                <Divider sx={{ my: 1 }} />
+                <Box sx={{ px: 2, py: 1 }}>
+                  <Typography variant="overline" color="text.secondary" sx={{ fontSize: '0.75rem' }}>
+                    Job Seeker Tools
+                  </Typography>
+                </Box>
                 {applicantItems.map((item) => (
                   <ListItem
                     key={item.path}
@@ -272,33 +391,92 @@ const Navbar: React.FC = () => {
                     onClick={handleMobileMenuToggle}
                     sx={{
                       backgroundColor: location.pathname === item.path ? 'rgba(0,0,0,0.04)' : 'transparent',
+                      minHeight: '56px',
+                      '&:hover': {
+                        backgroundColor: 'rgba(0,0,0,0.08)',
+                      }
                     }}
                   >
-                    <ListItemIcon>{item.icon}</ListItemIcon>
-                    <ListItemText primary={item.label} />
+                    <ListItemIcon sx={{ color: 'primary.main' }}>{item.icon}</ListItemIcon>
+                    <ListItemText 
+                      primary={item.label} 
+                      primaryTypographyProps={{ 
+                        fontSize: { xs: '0.9rem', sm: '1rem' },
+                        fontWeight: location.pathname === item.path ? 600 : 400
+                      }}
+                    />
                   </ListItem>
                 ))}
               </>
             )}
 
-            <Divider />
-            <ListItem onClick={handleLogout}>
-              <ListItemIcon><ExitToApp /></ListItemIcon>
-              <ListItemText primary="Logout" />
+            <Divider sx={{ my: 1 }} />
+            <ListItem 
+              onClick={handleLogout}
+              sx={{
+                minHeight: '56px',
+                '&:hover': {
+                  backgroundColor: 'rgba(0,0,0,0.08)',
+                }
+              }}
+            >
+              <ListItemIcon sx={{ color: 'error.main' }}><ExitToApp /></ListItemIcon>
+              <ListItemText 
+                primary="Logout" 
+                primaryTypographyProps={{ 
+                  fontSize: { xs: '0.9rem', sm: '1rem' },
+                  color: 'error.main'
+                }}
+              />
             </ListItem>
           </>
         )}
 
         {!isAuthenticated && (
           <>
-            <Divider />
-            <ListItem component={RouterLink} to="/login" onClick={handleMobileMenuToggle}>
-              <ListItemIcon><Login /></ListItemIcon>
-              <ListItemText primary="Login" />
+            <Divider sx={{ my: 1 }} />
+            <Box sx={{ px: 2, py: 1 }}>
+              <Typography variant="overline" color="text.secondary" sx={{ fontSize: '0.75rem' }}>
+                Account
+              </Typography>
+            </Box>
+            <ListItem 
+              component={RouterLink} 
+              to="/login" 
+              onClick={handleMobileMenuToggle}
+              sx={{
+                minHeight: '56px',
+                '&:hover': {
+                  backgroundColor: 'rgba(0,0,0,0.08)',
+                }
+              }}
+            >
+              <ListItemIcon sx={{ color: 'primary.main' }}><Login /></ListItemIcon>
+              <ListItemText 
+                primary="Login" 
+                primaryTypographyProps={{ 
+                  fontSize: { xs: '0.9rem', sm: '1rem' }
+                }}
+              />
             </ListItem>
-            <ListItem component={RouterLink} to="/register" onClick={handleMobileMenuToggle}>
-              <ListItemIcon><PersonAdd /></ListItemIcon>
-              <ListItemText primary="Register" />
+            <ListItem 
+              component={RouterLink} 
+              to="/register" 
+              onClick={handleMobileMenuToggle}
+              sx={{
+                minHeight: '56px',
+                '&:hover': {
+                  backgroundColor: 'rgba(0,0,0,0.08)',
+                }
+              }}
+            >
+              <ListItemIcon sx={{ color: 'primary.main' }}><PersonAdd /></ListItemIcon>
+              <ListItemText 
+                primary="Register" 
+                primaryTypographyProps={{ 
+                  fontSize: { xs: '0.9rem', sm: '1rem' }
+                }}
+              />
             </ListItem>
           </>
         )}
@@ -361,6 +539,10 @@ const Navbar: React.FC = () => {
                 color: 'inherit',
                 textDecoration: 'none',
                 flexGrow: isMobile ? 1 : 0,
+                fontSize: { xs: '1.1rem', sm: '1.25rem', md: '1.5rem' },
+                '&:hover': {
+                  opacity: 0.8,
+                }
               }}
             >
               Recruitment MS

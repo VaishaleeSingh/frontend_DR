@@ -50,14 +50,44 @@ const theme = createTheme({
     h1: {
       fontSize: '2.5rem',
       fontWeight: 600,
+      '@media (max-width:600px)': {
+        fontSize: '2rem',
+      },
     },
     h2: {
       fontSize: '2rem',
       fontWeight: 600,
+      '@media (max-width:600px)': {
+        fontSize: '1.75rem',
+      },
     },
     h3: {
       fontSize: '1.75rem',
       fontWeight: 600,
+      '@media (max-width:600px)': {
+        fontSize: '1.5rem',
+      },
+    },
+    h4: {
+      fontSize: '1.5rem',
+      fontWeight: 600,
+      '@media (max-width:600px)': {
+        fontSize: '1.25rem',
+      },
+    },
+    h5: {
+      fontSize: '1.25rem',
+      fontWeight: 600,
+      '@media (max-width:600px)': {
+        fontSize: '1.125rem',
+      },
+    },
+    h6: {
+      fontSize: '1.125rem',
+      fontWeight: 600,
+      '@media (max-width:600px)': {
+        fontSize: '1rem',
+      },
     },
   },
   components: {
@@ -66,6 +96,11 @@ const theme = createTheme({
         root: {
           textTransform: 'none',
           borderRadius: 8,
+          minHeight: 44,
+          '@media (max-width:600px)': {
+            minHeight: 48,
+            fontSize: '0.875rem',
+          },
         },
       },
     },
@@ -74,6 +109,30 @@ const theme = createTheme({
         root: {
           borderRadius: 12,
           boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+          '@media (max-width:600px)': {
+            borderRadius: 8,
+          },
+        },
+      },
+    },
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          '@media (max-width:600px)': {
+            paddingLeft: 16,
+            paddingRight: 16,
+          },
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '@media (max-width:600px)': {
+            '& .MuiInputBase-root': {
+              minHeight: 48,
+            },
+          },
         },
       },
     },

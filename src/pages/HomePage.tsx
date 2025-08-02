@@ -100,16 +100,40 @@ const HomePage: React.FC = () => {
         }}
       >
         <Container maxWidth="lg">
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 4 }}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: { xs: 3, md: 4 } }}>
             <Box sx={{ flex: { xs: '1 1 100%', md: '1 1 45%' } }}>
-              <Typography variant="h2" component="h1" gutterBottom>
+              <Typography 
+                variant="h2" 
+                component="h1" 
+                gutterBottom
+                sx={{
+                  fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+                  lineHeight: { xs: 1.2, sm: 1.3, md: 1.4 },
+                  textAlign: { xs: 'center', md: 'left' }
+                }}
+              >
                 Streamline Your Recruitment Process
               </Typography>
-              <Typography variant="h5" component="p" sx={{ mb: 4, opacity: 0.9 }}>
+              <Typography 
+                variant="h5" 
+                component="p" 
+                sx={{ 
+                  mb: 4, 
+                  opacity: 0.9,
+                  fontSize: { xs: '1rem', sm: '1.125rem', md: '1.25rem' },
+                  textAlign: { xs: 'center', md: 'left' },
+                  lineHeight: { xs: 1.4, sm: 1.5, md: 1.6 }
+                }}
+              >
                 A comprehensive MERN stack recruitment management system designed 
                 to make hiring easier for recruiters and job searching simpler for candidates.
               </Typography>
-              <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+              <Box sx={{ 
+                display: 'flex', 
+                gap: { xs: 1, sm: 2 }, 
+                flexWrap: 'wrap',
+                justifyContent: { xs: 'center', md: 'flex-start' }
+              }}>
                 {state.isAuthenticated ? (
                   <Button
                     variant="contained"
@@ -166,23 +190,39 @@ const HomePage: React.FC = () => {
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  height: 400,
+                  height: { xs: 300, sm: 350, md: 400 },
+                  mt: { xs: 2, md: 0 }
                 }}
               >
                 <Paper
                   elevation={8}
                   sx={{
-                    p: 4,
-                    borderRadius: 4,
+                    p: { xs: 3, sm: 4 },
+                    borderRadius: { xs: 3, md: 4 },
                     backgroundColor: 'rgba(255,255,255,0.1)',
                     backdropFilter: 'blur(10px)',
                     border: '1px solid rgba(255,255,255,0.2)',
+                    width: '100%',
+                    maxWidth: { xs: '100%', sm: '400px' }
                   }}
                 >
-                  <Typography variant="h4" align="center" gutterBottom>
+                  <Typography 
+                    variant="h4" 
+                    align="center" 
+                    gutterBottom
+                    sx={{
+                      fontSize: { xs: '1.5rem', sm: '2rem', md: '2.125rem' }
+                    }}
+                  >
                     🚀 Modern Recruitment
                   </Typography>
-                  <Typography variant="body1" align="center">
+                  <Typography 
+                    variant="body1" 
+                    align="center"
+                    sx={{
+                      fontSize: { xs: '0.9rem', sm: '1rem' }
+                    }}
+                  >
                     Built with cutting-edge technology for the modern workplace
                   </Typography>
                 </Paper>
@@ -194,21 +234,35 @@ const HomePage: React.FC = () => {
 
       {/* Stats Section */}
       <Container maxWidth="lg" sx={{ mb: 8 }}>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: { xs: 2, sm: 3, md: 4 } }}>
           {stats.map((stat, index) => (
-            <Box key={index} sx={{ flex: { xs: '1 1 45%', md: '1 1 22%' } }}>
+            <Box key={index} sx={{ flex: { xs: '1 1 45%', sm: '1 1 22%' } }}>
               <Paper
                 elevation={2}
                 sx={{
-                  p: 3,
+                  p: { xs: 2, sm: 3 },
                   textAlign: 'center',
                   borderRadius: 2,
+                  minHeight: { xs: 100, sm: 120 }
                 }}
               >
-                <Typography variant="h3" color="primary" fontWeight="bold">
+                <Typography 
+                  variant="h3" 
+                  color="primary" 
+                  fontWeight="bold"
+                  sx={{
+                    fontSize: { xs: '1.75rem', sm: '2.125rem', md: '3rem' }
+                  }}
+                >
                   {stat.number}
                 </Typography>
-                <Typography variant="body1" color="text.secondary">
+                <Typography 
+                  variant="body1" 
+                  color="text.secondary"
+                  sx={{
+                    fontSize: { xs: '0.875rem', sm: '1rem' }
+                  }}
+                >
                   {stat.label}
                 </Typography>
               </Paper>
@@ -219,16 +273,31 @@ const HomePage: React.FC = () => {
 
       {/* Features Section */}
       <Container maxWidth="lg" sx={{ mb: 8 }}>
-        <Typography variant="h3" align="center" gutterBottom>
+        <Typography 
+          variant="h3" 
+          align="center" 
+          gutterBottom
+          sx={{
+            fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' }
+          }}
+        >
           Powerful Features
         </Typography>
-        <Typography variant="h6" align="center" color="text.secondary" sx={{ mb: 6 }}>
+        <Typography 
+          variant="h6" 
+          align="center" 
+          color="text.secondary" 
+          sx={{ 
+            mb: { xs: 4, md: 6 },
+            fontSize: { xs: '1rem', sm: '1.125rem', md: '1.25rem' }
+          }}
+        >
           Everything you need to manage your recruitment process efficiently
         </Typography>
 
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: { xs: 3, sm: 4 } }}>
           {features.map((feature, index) => (
-            <Box key={index} sx={{ flex: { xs: '1 1 100%', md: '1 1 30%' } }}>
+            <Box key={index} sx={{ flex: { xs: '1 1 100%', sm: '1 1 45%', md: '1 1 30%' } }}>
               <Card
                 sx={{
                   height: '100%',
@@ -240,21 +309,34 @@ const HomePage: React.FC = () => {
                   },
                 }}
               >
-                <CardContent sx={{ flexGrow: 1 }}>
+                <CardContent sx={{ flexGrow: 1, p: { xs: 2, sm: 3 } }}>
                   <Avatar
                     sx={{
                       backgroundColor: 'primary.main',
                       mb: 2,
-                      width: 56,
-                      height: 56,
+                      width: { xs: 48, sm: 56 },
+                      height: { xs: 48, sm: 56 },
                     }}
                   >
                     {feature.icon}
                   </Avatar>
-                  <Typography variant="h6" gutterBottom>
+                  <Typography 
+                    variant="h6" 
+                    gutterBottom
+                    sx={{
+                      fontSize: { xs: '1rem', sm: '1.25rem' }
+                    }}
+                  >
                     {feature.title}
                   </Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography 
+                    variant="body2" 
+                    color="text.secondary"
+                    sx={{
+                      fontSize: { xs: '0.875rem', sm: '1rem' },
+                      lineHeight: 1.5
+                    }}
+                  >
                     {feature.description}
                   </Typography>
                 </CardContent>

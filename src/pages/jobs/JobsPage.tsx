@@ -128,21 +128,46 @@ const JobsPage: React.FC = () => {
     <Container maxWidth="lg">
       <Box sx={{ py: 4 }}>
         {/* Header */}
-        <Typography variant="h3" component="h1" gutterBottom>
+        <Typography 
+          variant="h3" 
+          component="h1" 
+          gutterBottom
+          sx={{
+            fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+            textAlign: { xs: 'center', md: 'left' }
+          }}
+        >
           Find Your Dream Job
         </Typography>
-        <Typography variant="h6" color="text.secondary" sx={{ mb: 4 }}>
+        <Typography 
+          variant="h6" 
+          color="text.secondary" 
+          sx={{ 
+            mb: 4,
+            fontSize: { xs: '1rem', sm: '1.125rem', md: '1.25rem' },
+            textAlign: { xs: 'center', md: 'left' }
+          }}
+        >
           Discover opportunities that match your skills and career goals
         </Typography>
 
         {/* Search and Filters */}
-        <Paper elevation={2} sx={{ p: 3, mb: 4 }}>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, alignItems: 'center' }}>
+        <Paper elevation={2} sx={{ p: { xs: 2, sm: 3 }, mb: 4 }}>
+          <Box sx={{ 
+            display: 'flex', 
+            flexDirection: { xs: 'column', md: 'row' },
+            flexWrap: 'wrap', 
+            gap: { xs: 2, sm: 2, md: 2 }, 
+            alignItems: { xs: 'stretch', md: 'center' }
+          }}>
             <TextField
               placeholder="Search jobs or companies..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              sx={{ flex: { xs: '1 1 100%', md: '1 1 300px' } }}
+              sx={{ 
+                flex: { xs: '1 1 100%', md: '1 1 300px' },
+                minWidth: { xs: '100%', md: 'auto' }
+              }}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -152,7 +177,10 @@ const JobsPage: React.FC = () => {
               }}
             />
 
-            <FormControl sx={{ minWidth: 150 }}>
+            <FormControl sx={{ 
+              minWidth: { xs: '100%', md: 150 },
+              flex: { xs: '1 1 100%', sm: '1 1 45%', md: 'auto' }
+            }}>
               <InputLabel>Location Type</InputLabel>
               <Select
                 value={locationFilter}
@@ -166,7 +194,10 @@ const JobsPage: React.FC = () => {
               </Select>
             </FormControl>
 
-            <FormControl sx={{ minWidth: 150 }}>
+            <FormControl sx={{ 
+              minWidth: { xs: '100%', md: 150 },
+              flex: { xs: '1 1 100%', sm: '1 1 45%', md: 'auto' }
+            }}>
               <InputLabel>Job Type</InputLabel>
               <Select
                 value={jobTypeFilter}
@@ -181,7 +212,10 @@ const JobsPage: React.FC = () => {
               </Select>
             </FormControl>
 
-            <FormControl sx={{ minWidth: 150 }}>
+            <FormControl sx={{ 
+              minWidth: { xs: '100%', md: 150 },
+              flex: { xs: '1 1 100%', sm: '1 1 45%', md: 'auto' }
+            }}>
               <InputLabel>Experience</InputLabel>
               <Select
                 value={experienceLevelFilter}
@@ -245,50 +279,118 @@ const JobsPage: React.FC = () => {
                 borderColor: job.featured ? 'primary.main' : 'transparent',
               }}
             >
-              <CardContent>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 2 }}>
-                  <Box>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                      <Typography variant="h5" component="h2">
+              <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
+                <Box sx={{ 
+                  display: 'flex', 
+                  flexDirection: { xs: 'column', sm: 'row' },
+                  justifyContent: 'space-between', 
+                  alignItems: { xs: 'flex-start', sm: 'flex-start' }, 
+                  mb: 2,
+                  gap: { xs: 1, sm: 0 }
+                }}>
+                  <Box sx={{ flex: 1 }}>
+                    <Box sx={{ 
+                      display: 'flex', 
+                      flexDirection: { xs: 'column', sm: 'row' },
+                      alignItems: { xs: 'flex-start', sm: 'center' }, 
+                      gap: { xs: 0.5, sm: 1 }, 
+                      mb: 1,
+                      flexWrap: 'wrap'
+                    }}>
+                      <Typography 
+                        variant="h5" 
+                        component="h2"
+                        sx={{
+                          fontSize: { xs: '1.25rem', sm: '1.5rem' },
+                          lineHeight: 1.2
+                        }}
+                      >
                         {job.title}
                       </Typography>
                       {job.featured && (
-                        <Chip label="Featured" color="primary" size="small" />
+                        <Chip 
+                          label="Featured" 
+                          color="primary" 
+                          size="small"
+                          sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}
+                        />
                       )}
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
                       <Business fontSize="small" color="action" />
-                      <Typography variant="subtitle1" color="text.secondary">
+                      <Typography 
+                        variant="subtitle1" 
+                        color="text.secondary"
+                        sx={{
+                          fontSize: { xs: '0.875rem', sm: '1rem' }
+                        }}
+                      >
                         {job.company.name}
                       </Typography>
                     </Box>
                   </Box>
                 </Box>
 
-                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, mb: 2 }}>
+                <Box sx={{ 
+                  display: 'flex', 
+                  flexDirection: { xs: 'column', sm: 'row' },
+                  flexWrap: 'wrap', 
+                  gap: { xs: 1, sm: 2 }, 
+                  mb: 2 
+                }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                     <LocationOn fontSize="small" color="action" />
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography 
+                      variant="body2" 
+                      color="text.secondary"
+                      sx={{
+                        fontSize: { xs: '0.8rem', sm: '0.875rem' }
+                      }}
+                    >
                       {getLocationText(job.location)}
                     </Typography>
                   </Box>
 
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                     <Work fontSize="small" color="action" />
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography 
+                      variant="body2" 
+                      color="text.secondary"
+                      sx={{
+                        fontSize: { xs: '0.8rem', sm: '0.875rem' }
+                      }}
+                    >
                       {job.jobType?.replace('-', ' ')} • {job.experienceLevel} level
                     </Typography>
                   </Box>
 
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                     <AttachMoney fontSize="small" color="action" />
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography 
+                      variant="body2" 
+                      color="text.secondary"
+                      sx={{
+                        fontSize: { xs: '0.8rem', sm: '0.875rem' }
+                      }}
+                    >
                       {formatSalary(job.salary)}
                     </Typography>
                   </Box>
                 </Box>
 
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                <Typography 
+                  variant="body2" 
+                  color="text.secondary" 
+                  sx={{ 
+                    mb: 2,
+                    fontSize: { xs: '0.875rem', sm: '1rem' },
+                    lineHeight: 1.5,
+                    display: '-webkit-box',
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                  }}
+                >
                   {job.description}
                 </Typography>
 
@@ -301,34 +403,63 @@ const JobsPage: React.FC = () => {
                         size="small"
                         variant="outlined"
                         color="default"
+                        sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}
                       />
                     ))}
                     {job.skills.length > 5 && (
-                      <Chip label={`+${job.skills.length - 5} more`} size="small" variant="outlined" />
+                      <Chip 
+                        label={`+${job.skills.length - 5} more`} 
+                        size="small" 
+                        variant="outlined"
+                        sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}
+                      />
                     )}
                   </Box>
                 )}
 
                 <Divider sx={{ my: 2 }} />
 
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Box sx={{ 
+                  display: 'flex', 
+                  flexDirection: { xs: 'column', sm: 'row' },
+                  justifyContent: 'space-between', 
+                  alignItems: { xs: 'flex-start', sm: 'center' },
+                  gap: { xs: 0.5, sm: 0 }
+                }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                     <AccessTime fontSize="small" color="action" />
-                    <Typography variant="caption" color="text.secondary">
+                    <Typography 
+                      variant="caption" 
+                      color="text.secondary"
+                      sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}
+                    >
                       Posted {formatDate(job.createdAt)}
                     </Typography>
                   </Box>
-                  <Typography variant="caption" color="text.secondary">
+                  <Typography 
+                    variant="caption" 
+                    color="text.secondary"
+                    sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}
+                  >
                     Deadline: {formatDate(job.applicationDeadline)}
                   </Typography>
                 </Box>
               </CardContent>
 
-              <CardActions sx={{ px: 2, pb: 2 }}>
+              <CardActions sx={{ 
+                px: { xs: 2, sm: 3 }, 
+                pb: { xs: 2, sm: 3 },
+                flexDirection: { xs: 'column', sm: 'row' },
+                gap: { xs: 1, sm: 2 }
+              }}>
                 <Button
                   variant="outlined"
                   size="large"
                   onClick={() => navigate(`/jobs/${job._id}`)}
+                  sx={{
+                    width: { xs: '100%', sm: 'auto' },
+                    minHeight: { xs: '44px', sm: '48px' }
+                  }}
                 >
                   View Details
                 </Button>
@@ -337,6 +468,10 @@ const JobsPage: React.FC = () => {
                     variant="contained"
                     size="large"
                     onClick={() => navigate(`/jobs/${job._id}`)}
+                    sx={{
+                      width: { xs: '100%', sm: 'auto' },
+                      minHeight: { xs: '44px', sm: '48px' }
+                    }}
                   >
                     Apply Now
                   </Button>
